@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Violation Dashboard</title>
+    <style>
+        body { background:#111; color:white; font-family:Arial; padding:20px; }
+        .card { background:#222; padding:15px; margin:15px 0; border-radius:10px; }
+        img { margin-top:10px; border-radius:8px; }
+        a { color:#00ffcc; }
+    </style>
+</head>
+<body>
+
+<h1>🚦 AI Traffic Violation Dashboard</h1>
+
+<h2>Total Violations: {{ total_violations }}</h2>
+<h2>Total Fine Collected: ₹{{ total_fine }}</h2>
+<h3>Helmet Violations: {{ helmet_count }}</h3>
+<h3>Seatbelt Violations: {{ seatbelt_count }}</h3>
+
+<br>
+<a href="/export">Download CSV Report</a>
+
+<hr>
+
+{% for v in violations %}
+<div class="card">
+    <p><strong>Plate:</strong> {{ v.plate }}</p>
+    <p><strong>Time:</strong> {{ v.time }}</p>
+    <p><strong>Violation:</strong> {{ v.type }}</p>
+    <p><strong>Fine:</strong> ₹{{ v.fine }}</p>
+    <img src="/{{ v.image }}" width="300">
+</div>
+{% endfor %}
+
+</body>
+</html>
